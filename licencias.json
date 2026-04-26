@@ -1,0 +1,9 @@
+[
+  {
+    "app": "GPS",
+    "codigo": "GPS-TEST-0000-0000",
+    "cliente": "Test",
+    "vence": "vitalicio",
+    "estado": "activo"
+  }
+]
