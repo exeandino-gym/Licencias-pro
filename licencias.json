@@ -1,8 +1,10 @@
-{
+[
+  {
   "app": "PRE",
   "appNombre": "App de Préstamos",
   "codigo": "PRE-FM75-QGGP-XBNW",
   "cliente": "Macelooviedo",
   "vence": "2026-05-27",
   "estado": "activo"
-}
+  }
+]
