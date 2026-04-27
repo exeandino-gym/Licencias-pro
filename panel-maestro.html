@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Maestro de Licencias</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#020617,#111827);color:#f8fafc;min-height:100vh;padding:18px}
+.wrap{max-width:860px;margin:0 auto}
+.header,.card{background:#111827;border:1px solid #334155;border-radius:22px;padding:20px;margin-bottom:14px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.header{text-align:center}.logo{font-size:44px}.sub{color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.4}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+h1{font-size:24px}h2{font-size:17px;margin-bottom:14px}
+label{display:block;color:#94a3b8;font-weight:800;font-size:11px;letter-spacing:.7px;text-transform:uppercase;margin:13px 0 6px}
+input,select,textarea{width:100%;padding:12px 13px;border-radius:13px;border:2px solid #334155;background:#020617;color:#f8fafc;outline:none;font-size:14px}
+input:focus,select:focus,textarea:focus{border-color:#38bdf8}
+.btn{width:100%;margin-top:14px;padding:13px;border:0;border-radius:14px;font-weight:900;font-size:14px;cursor:pointer}
+.green{background:#22c55e;color:#052e16}.blue{background:#3b82f6;color:#fff}.red{background:#ef4444;color:#fff}.wa{background:#25d366;color:#052e16}
+.out{background:#020617;border:1px solid #334155;border-radius:16px;padding:14px;margin-top:14px}
+.out-title{color:#94a3b8;font-size:11px;font-weight:900;text-transform:uppercase;margin-bottom:8px}
+pre{white-space:pre-wrap;word-break:break-word;color:#93c5fd;font-size:12px;line-height:1.55}
+.help{color:#94a3b8;font-size:12px;line-height:1.45;margin-top:8px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#111827;border:1px solid #334155;color:#f8fafc;padding:10px 16px;border-radius:12px;opacity:0;transition:.25s;font-size:13px}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="logo">🧩</div>
+    <h1>Panel Maestro de Licencias</h1>
+    <div class="sub">Genera bloques JSON listos para pegar en <b>licencias.json</b>. No modifica GitHub solo, te ayuda a no escribir a mano.</div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>🔐 Crear licencia</h2>
+      <label>Aplicación</label>
+      <select id="app">
+        <option value="PRE|App de Préstamos">💰 PRE — Préstamos</option>
+        <option value="GPS|GPS MendozaMapa">🗺️ GPS — MendozaMapa</option>
+        <option value="GYM|Maestro del Gimnasio">🏋️ GYM — Gimnasio</option>
+        <option value="CAS|Control Casino">🎰 CAS — Casino</option>
+        <option value="CUSTOM|App personalizada">➕ Personalizada</option>
+      </select>
+      <div id="customBox" style="display:none">
+        <label>Nombre app personalizada</label><input id="customName" placeholder="Ej: App Clau">
+        <label>Prefijo</label><input id="customPrefix" maxlength="5" placeholder="Ej: CLA">
+      </div>
+      <label>Cliente</label><input id="cliente" placeholder="Ej: Marcelo Oviedo">
+      <label>Vencimiento</label>
+      <select id="vence">
+        <option value="1m">1 mes</option><option value="3m">3 meses</option>
+        <option value="6m">6 meses</option><option value="1a">1 año</option>
+        <option value="vitalicio">Vitalicio</option><option value="custom">Fecha personalizada</option>
+      </select>
+      <div id="fechaBox" style="display:none"><label>Fecha personalizada</label><input id="fecha" type="date"></div>
+      <button class="btn green" onclick="crearLicencia()">⚡ Crear licencia</button>
+      <div class="out"><div class="out-title">Bloque para pegar en licencias.json</div><pre id="salidaCrear">Todavía no generaste una licencia.</pre></div>
+      <button class="btn blue" onclick="copiar('salidaCrear')">📋 Copiar bloque JSON</button>
+      <button class="btn wa" onclick="whatsapp()">📲 Copiar mensaje WhatsApp</button>
+    </div>
+
+    <div class="card">
+      <h2>🔄 Renovar / bloquear</h2>
+      <label>Código existente</label><input id="codExistente" placeholder="Ej: PRE-1111-2222-3333">
+      <label>Cliente</label><input id="clienteExistente" placeholder="Ej: Marcelo Oviedo">
+      <label>Nueva fecha de vencimiento</label><input id="fechaRenovar" type="date">
+      <button class="btn green" onclick="renovar()">📅 Generar renovación</button>
+      <button class="btn red" onclick="estado('bloqueado')">⛔ Generar bloqueo</button>
+      <button class="btn blue" onclick="estado('activo')">✅ Generar reactivación</button>
+      <div class="out"><div class="out-title">Texto para reemplazar en licencias.json</div><pre id="salidaAccion">Acá aparecerá el bloque renovado, bloqueado o activo.</pre></div>
+      <button class="btn blue" onclick="copiar('salidaAccion')">📋 Copiar resultado</button>
+      <div class="help"><b>Uso:</b> buscás el cliente en licencias.json y reemplazás su bloque por este.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📌 Pasos</h2>
+    <div class="help">1) Crear licencia → 2) Copiar JSON → 3) Pegar dentro de licencias.json → 4) Commit changes → 5) Cliente activa la app.</div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+let ultimaLicencia=null;
+document.getElementById('app').addEventListener('change',()=>{document.getElementById('customBox').style.display=document.getElementById('app').value.startsWith('CUSTOM')?'block':'none'});
+document.getElementById('vence').addEventListener('change',()=>{document.getElementById('fechaBox').style.display=document.getElementById('vence').value==='custom'?'block':'none'});
+function limpiar(t){return String(t||'').trim().replace(/[<>{}[\]"'`]/g,'')}
+function prefijo(t){return limpiar(t).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,5)}
+function rnd(n){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<n;i++)s+=c[Math.floor(Math.random()*c.length)];return s}
+function fecha(v){if(v==='vitalicio')return 'vitalicio';if(v==='custom')return document.getElementById('fecha').value||'vitalicio';const d=new Date();if(v==='1m')d.setMonth(d.getMonth()+1);if(v==='3m')d.setMonth(d.getMonth()+3);if(v==='6m')d.setMonth(d.getMonth()+6);if(v==='1a')d.setFullYear(d.getFullYear()+1);return d.toISOString().split('T')[0]}
+function appData(){const raw=document.getElementById('app').value.split('|');if(raw[0]!=='CUSTOM')return{app:raw[0],appNombre:raw[1]};const n=limpiar(document.getElementById('customName').value);const p=prefijo(document.getElementById('customPrefix').value);if(!n){toast('Escribí el nombre de la app');return null}if(p.length<2){toast('Prefijo inválido');return null}return{app:p,appNombre:n}}
+function crearLicencia(){const ad=appData();if(!ad)return;const cliente=limpiar(document.getElementById('cliente').value);if(!cliente){toast('Escribí el cliente');return}const codigo=ad.app+'-'+rnd(4)+'-'+rnd(4)+'-'+rnd(4);const vence=fecha(document.getElementById('vence').value);ultimaLicencia={app:ad.app,appNombre:ad.appNombre,codigo,cliente,vence,estado:'activo'};document.getElementById('salidaCrear').textContent=JSON.stringify(ultimaLicencia,null,2);toast('Licencia creada')}
+function renovar(){const codigo=limpiar(document.getElementById('codExistente').value).toUpperCase();const cliente=limpiar(document.getElementById('clienteExistente').value)||'Cliente';const f=document.getElementById('fechaRenovar').value;if(!codigo||!f){toast('Completá código y fecha');return}const app=codigo.split('-')[0];document.getElementById('salidaAccion').textContent=JSON.stringify({app,codigo,cliente,vence:f,estado:'activo'},null,2)}
+function estado(e){const codigo=limpiar(document.getElementById('codExistente').value).toUpperCase();const cliente=limpiar(document.getElementById('clienteExistente').value)||'Cliente';const f=document.getElementById('fechaRenovar').value||'vitalicio';if(!codigo){toast('Completá el código');return}const app=codigo.split('-')[0];document.getElementById('salidaAccion').textContent=JSON.stringify({app,codigo,cliente,vence:f,estado:e},null,2)}
+function copiar(id){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>toast('Copiado'))}
+function whatsapp(){if(!ultimaLicencia){toast('Primero creá una licencia');return}const v=ultimaLicencia.vence==='vitalicio'?'Vitalicio':'Vence: '+ultimaLicencia.vence;const msg=`Hola ${ultimaLicencia.cliente}, te paso tu código de activación:\n\nApp: ${ultimaLicencia.appNombre}\nCódigo: ${ultimaLicencia.codigo}\n${v}\n\nAbrí la app, pegá el código y tocá Activar.`;navigator.clipboard.writeText(msg).then(()=>toast('Mensaje copiado'))}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+</script>
+</body>
+</html>
