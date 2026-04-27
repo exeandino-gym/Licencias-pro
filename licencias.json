@@ -1,9 +1,8 @@
-[
-  {
-    "app": "PRE",
-    "codigo": "PRE-1111-2222-3333",
-    "cliente": "Marcelo Oviedo",
-    "vence": "2026-05-30",
-    "estado": "activo"
-  }
-]
+{
+  "app": "PRE",
+  "appNombre": "App de Préstamos",
+  "codigo": "PRE-FM75-QGGP-XBNW",
+  "cliente": "Macelooviedo",
+  "vence": "2026-05-27",
+  "estado": "activo"
+}
