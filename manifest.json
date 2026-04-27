@@ -1,0 +1,19 @@
+{
+  "name": "Panel Maestro Licencias",
+  "short_name": "Licencias PRO",
+  "description": "Panel maestro para generar y gestionar licencias de apps",
+  "start_url": "./panel-maestro.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#111827",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icono.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
