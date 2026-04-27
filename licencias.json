@@ -6,5 +6,13 @@
   "cliente": "Macelooviedo",
   "vence": "2026-05-27",
   "estado": "activo"
+  },
+  {
+  "app": "GPS",
+  "appNombre": "GPS MendozaMapa",
+  "codigo": "GPS-4933-VL2Z-E2LT",
+  "cliente": "VictimaZonaEste",
+  "vence": "2026-05-27",
+  "estado": "activo"
   }
 ]
