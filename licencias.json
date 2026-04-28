@@ -4,9 +4,9 @@
   "appNombre": "App de Préstamos",
   "codigo": "PRE-8SMB-6HSK-F6FY",
   "cliente": "Macelooviedo",
-  "vence": "2026-05-27",
+  "vence": "2026-05-28",
   "estado": "activo"
-  },
+  }
   {
   "app": "GPS",
   "codigo": "GPS-4933-VL2Z-E2LT",
