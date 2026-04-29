@@ -12,5 +12,13 @@
   "cliente": "Victimazonaeste",
   "vence": "vitalicio",
   "estado": "activo"
+  },
+  {
+  "app": "CAS",
+  "appNombre": "Control Casino",
+  "codigo": "CAS-PAFZ-82GG-WW2X",
+  "cliente": "Cistian-Nuvoa",
+  "vence": "2026-05-29",
+  "estado": "activo"
   }
 ]
