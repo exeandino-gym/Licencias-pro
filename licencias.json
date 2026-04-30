@@ -1,4 +1,5 @@
-[{
+[
+  {
   "app": "PRE",
   "appNombre": "App de Préstamos",
   "codigo": "PRE-FMYR-AM3T-TR94",
@@ -18,6 +19,14 @@
   "appNombre": "Control Casino",
   "codigo": "CAS-PAFZ-82GG-WW2X",
   "cliente": "Cistian-Nuvoa",
+  "vence": "2026-05-29",
+  "estado": "activo"
+  },
+  {
+  "app": "CAS",
+  "appNombre": "Control Casino",
+  "codigo": "CAS-YADZ-8T5V-ED7R",
+  "cliente": "Naty",
   "vence": "2026-05-29",
   "estado": "activo"
   }
