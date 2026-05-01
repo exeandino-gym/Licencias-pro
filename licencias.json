@@ -29,5 +29,13 @@
   "cliente": "Naty",
   "vence": "2026-05-29",
   "estado": "activo"
+  },
+  {
+  "app": "CAS",
+  "appNombre": "Control Casino",
+  "codigo": "CAS-CUP9-ER9J-BUK2",
+  "cliente": "Jime",
+  "vence": "2026-05-30",
+  "estado": "activo"
   }
 ]
