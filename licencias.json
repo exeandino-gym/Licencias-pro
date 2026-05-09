@@ -9,9 +9,10 @@
 },
   {
   "app": "GPS",
-  "codigo": "GPS-4933-VL2Z-E2LT",
+  "appNombre": "GPS MendozaMapa",
+  "codigo": "GPS-GDUL-A8EA-RJ3A",
   "cliente": "Victimazonaeste",
-  "vence": "vitalicio",
+  "vence": "2026-06-09",
   "estado": "activo"
   },
   {
