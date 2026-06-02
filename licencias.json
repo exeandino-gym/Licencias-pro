@@ -38,5 +38,13 @@
   "cliente": "Jime",
   "vence": "2026-05-30",
   "estado": "activo"
+  },
+  {
+  "app": "AVZ",
+  "appNombre": "AsistenciavíctimaZonaEste",
+  "codigo": "AVZ-2YGA-XQCL-D53L",
+  "cliente": "RelacionesconlacomunidadZonaEste",
+  "vence": "2026-07-02",
+  "estado": "activo"
   }
 ]
