@@ -24,6 +24,14 @@
   "estado": "activo"
   },
   {
+  "app": "CAS",
+  "appNombre": "Control Casino",
+  "codigo": "CAS-DWJZ-6PL8-9UNV",
+  "cliente": "Dialma",
+  "vence": "2026-07-27",
+  "estado": "activo"
+  },
+  {
   "app": "AVZ",
   "appNombre": "AsistenciavíctimaZonaEste",
   "codigo": "AVZ-2YGA-XQCL-D53L",
