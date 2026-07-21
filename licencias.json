@@ -18,25 +18,9 @@
   {
   "app": "CAS",
   "appNombre": "Control Casino",
-  "codigo": "CAS-PAFZ-82GG-WW2X",
-  "cliente": "Cistian-Nuvoa",
-  "vence": "2026-05-29",
-  "estado": "activo"
-  },
-  {
-  "app": "CAS",
-  "appNombre": "Control Casino",
   "codigo": "CAS-YADZ-8T5V-ED7R",
   "cliente": "Naty",
   "vence": "2026-05-29",
-  "estado": "activo"
-  },
-  {
-  "app": "CAS",
-  "appNombre": "Control Casino",
-  "codigo": "CAS-CUP9-ER9J-BUK2",
-  "cliente": "Jime",
-  "vence": "2026-05-30",
   "estado": "activo"
   },
   {
